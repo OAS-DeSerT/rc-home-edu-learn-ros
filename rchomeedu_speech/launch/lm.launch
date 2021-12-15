@@ -10,7 +10,7 @@
     <arg name="gram" default=":default"/>
     <arg name="grammar" default=":default"/>
     <arg name="rule" default=":default"/>
-    
+
     <!--
     Node for handling lm mode
     -->
@@ -40,4 +40,5 @@
         >
         <param name="input" value="$(arg input)"/>
     </node>
+
 </launch>
