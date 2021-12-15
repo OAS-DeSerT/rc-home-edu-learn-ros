@@ -14,10 +14,10 @@
     <!--
     Node for handling lm mode
     -->
-	<node
-		name="lm_control"
-		pkg="rchomeedu_speech"
-		type="lm_test.py"
+    <node
+        name="lm_control"
+        pkg="rchomeedu_speech"
+        type="lm_test.py"
         output="screen"
         >
         <remap from="jsgf_audio" to="sphinx_audio" />
@@ -27,18 +27,17 @@
         <param name="gram" value="$(arg gram)"/>
         <param name="grammar" value="$(arg grammar)"/>
         <param name="rule" value="$(arg rule)"/>
-	</node>
+    </node>
 
     <!--
     Node for publishing audio inputs
     -->
     <node
         name="audio_control"
-        pkg="pocketsphinx"
+        pkg="rchomeedu_speech"
         type="send_audio.py"
         output="screen"
         >
-
         <param name="input" value="$(arg input)"/>
     </node>
 </launch>
