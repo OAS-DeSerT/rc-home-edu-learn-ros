@@ -14,10 +14,10 @@
     <!--
     Node for handling jsgf grammar mode
     -->
-	<node
-		name="asr_control"
-		pkg="rchomeedu_speech"
-		type="asr_test.py"
+    <node
+        name="asr_control"
+        pkg="rchomeedu_speech"
+        type="asr_test.py"
         output="screen"
         >
         <remap from="jsgf_audio" to="sphinx_audio" />
@@ -27,7 +27,7 @@
         <param name="gram" value="$(arg gram)"/>
         <param name="grammar" value="$(arg grammar)"/>
         <param name="rule" value="$(arg rule)"/>
-	</node>
+    </node>
 
     <!--
     Node for publishing audio inputs
