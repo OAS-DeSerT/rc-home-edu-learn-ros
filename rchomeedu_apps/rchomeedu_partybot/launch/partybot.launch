@@ -1,50 +1,15 @@
 <launch>
 
-    <!--
-    Args with no default attribute are not optional
-    -->
-    <arg name="input" default=":default"/>
-    <arg name="hmm" default=":default"/>
-    <arg name="dict"/>
-    <arg name="lm" default=":default"/>
-    <arg name="gram" default=":default"/>
-    <arg name="grammar" default=":default"/>
-    <arg name="rule" default=":default"/>
-    
-    <!--
-    Node for handling lm mode
-    -->
-	<node
-		name="lm_control"
-		pkg="rchomeedu_speech"
-		type="lm_test.py"
-        output="screen"
-        >
-        <remap from="jsgf_audio" to="sphinx_audio" />
-        <param name="lm" value="$(arg lm)"/>
-        <param name="dict" value="$(arg dict)"/>
-        <param name="hmm" value="$(arg hmm)"/>
-        <param name="gram" value="$(arg gram)"/>
-        <param name="grammar" value="$(arg grammar)"/>
-        <param name="rule" value="$(arg rule)"/>
-	</node>
-
-    <!--
-    Node for publishing audio inputs
-    -->
-    <node
-        name="audio_control"
-        pkg="pocketsphinx"
-        type="send_audio.py"
-        output="screen"
-        >
-
-        <param name="input" value="$(arg input)"/>
-    </node>
+  <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
+    <param name="mic_name" value="alsa_input.usb-C-Media_Electronics_Inc._USB_Audio_Device-00.mono-fallback"/>
+    <param name="hmm" value="/usr/local/share/pocketsphinx/model/en-us/en-us"/>
+    <param name="dict" value="$(find rchomeedu_partybot)/config/partybot.dic"/>
+    <param name="lm" value="$(find rchomeedu_partybot)/config/partybot.lm"/>
+  </node>
 
   <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>
   <node name="dance_arm" pkg="rchomeedu_arm" type="dance_arm.py"/>
   <node name="take_photo" pkg="rchomeedu_vision" type="take_photo_sub.py"/>
-  <node name="partybot" pkg="rchomeedu_partybot" type="partybot.py" output="screen"/>
+  <node name="partybot" pkg="rchomeedu_partybot" type="partybot.py"/>
 
 </launch>
